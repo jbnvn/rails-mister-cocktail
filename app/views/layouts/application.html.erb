@@ -13,8 +13,13 @@
   </head>
 
   <body>
+    <%= render 'shared/navbar' %>
+    <div class="body-container vh:100">
     <%= yield %>
+     </div>
+    <%= render 'shared/footer' %>
+
     <%= javascript_include_tag "application", 'data-turbolinks-track': 'reload' %> <!-- from app/assets/javascripts/application.js -->
     <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
-    </body>
+  </body>
 </html>

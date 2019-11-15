@@ -1,0 +1,31 @@
+<div class="ml-5 mt-3">
+  <h3><%= @cocktail.name %></h3>
+  <%= link_to "Edit cocktail" , edit_cocktail_path %>
+  <%= link_to cocktail_path(@cocktail), method: :delete, data: {confirm: "Are you sure, like really ?"} do  %>
+    <i class="fas fa-trash-restore-alt"></i>
+    <% end %>
+</div>
+
+<i class="fas fa-trash-restore-alt"></i>
+
+<div class="cards">
+  <% @cocktail.doses.each do |d| %>
+  <div class="card-product">
+    <img src="https://source.unsplash.com/featured/?<%= d.ingredient.name %>" />
+    <div class="card-product-infos">
+      <h2><%= d.ingredient.name.upcase %></h2>
+      <p><%= d.description %></p>
+      <%= link_to "Delete dose", dose_path(d), method: :delete %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="cards">
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.association :ingredient %>
+  <%= f.input :description %>
+  <%= f.submit class: 'btn btn-warning' %>
+<% end %>
+</div>
+
